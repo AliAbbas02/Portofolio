@@ -16,8 +16,25 @@
       <h2>{{ post['title'] }}</h2>
       <p><em>Written by {{ post['author'] }}</em></p>
       <p>{{ post['content'] }}</p>
+      <br />
+      <!-- creating url for delete route -->
+      <form action="{{ url_for('delete', post_id=post.id) }}" method="post">
+        <input type="hidden" value="delete" />
+        <button type="submit">Delete Post</button>
+      </form>
+      <!-- creating url for update route -->
+      <form action="{{ url_for('update', post_id=post.id) }}" method="get">
+        <input type="hidden" value="update" />
+        <button type="submit">update Post</button>
+      </form>
+      <!-- creating url for like route -->
+      <form action="{{ url_for('like', post_id=post.id)}}" method="get">
+        <input type="hidden" value="like" />
+        <button type="'submit">{{ post.likes }} likes</button>
+      </form>
     </div>
     {% endfor %}
+    <!-- creating a link for add route -->
     <a href="{{ url_for('add') }}">for more adding posts click here</a>
   </body>
 </html>
